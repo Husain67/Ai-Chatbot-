@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:myapp/itinerary_screen.dart';
 import 'package:myapp/services/ai_service.dart';
@@ -30,6 +29,8 @@ class _InputScreenState extends State<InputScreen> {
         days: _daysController.text,
       );
 
+      if (!mounted) return;
+
       setState(() {
         _isLoading = false;
       });
@@ -46,9 +47,7 @@ class _InputScreenState extends State<InputScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Travel Planner'),
-      ),
+      appBar: AppBar(title: const Text('Travel Planner')),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Form(

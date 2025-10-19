@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 class ItineraryScreen extends StatelessWidget {
@@ -9,9 +8,7 @@ class ItineraryScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Your Itinerary'),
-      ),
+      appBar: AppBar(title: const Text('Your Itinerary')),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
         child: Text(itinerary),
