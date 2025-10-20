@@ -77,7 +77,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get deleteChat => 'Delete Chat';
 
   @override
-  String get deleteChatConfirm => 'Are you sure you want to delete this chat? This action cannot be undone.';
+  String get deleteChatConfirm =>
+      'Are you sure you want to delete this chat? This action cannot be undone.';
 
   @override
   String get delete => 'Delete';
@@ -127,35 +128,41 @@ class AppLocalizationsEn extends AppLocalizations {
   String get informationCollected => 'Information We Collect';
 
   @override
-  String get infoCollectedDetails => '• Text messages you send to the chatbot\n• Images you upload for analysis\n• Voice recordings (if voice input is used)\n• App usage analytics';
+  String get infoCollectedDetails =>
+      '• Text messages you send to the chatbot\n• Images you upload for analysis\n• Voice recordings (if voice input is used)\n• App usage analytics';
 
   @override
   String get howWeUseInfo => 'How We Use Your Information';
 
   @override
-  String get useInfoDetails => '• To provide AI-powered responses to your queries\n• To analyze images you upload\n• To improve our AI models and services\n• To provide customer support';
+  String get useInfoDetails =>
+      '• To provide AI-powered responses to your queries\n• To analyze images you upload\n• To improve our AI models and services\n• To provide customer support';
 
   @override
   String get dataStorageSecurity => 'Data Storage and Security';
 
   @override
-  String get storageDetails => '• Your conversations are processed in real-time\n• Images are temporarily stored for analysis only\n• We use industry-standard encryption\n• Data is not stored permanently on our servers';
+  String get storageDetails =>
+      '• Your conversations are processed in real-time\n• Images are temporarily stored for analysis only\n• We use industry-standard encryption\n• Data is not stored permanently on our servers';
 
   @override
   String get thirdPartyServices => 'Third-Party Services';
 
   @override
-  String get thirdPartyDetails => '• Google Gemini AI for text and image processing\n• Firebase for app functionality\n• These services have their own privacy policies';
+  String get thirdPartyDetails =>
+      '• Google Gemini AI for text and image processing\n• Firebase for app functionality\n• These services have their own privacy policies';
 
   @override
   String get yourRights => 'Your Rights';
 
   @override
-  String get rightsDetails => '• You can delete your conversation history\n• You can opt out of analytics\n• You can request data deletion\n• Contact us for any privacy concerns';
+  String get rightsDetails =>
+      '• You can delete your conversation history\n• You can opt out of analytics\n• You can request data deletion\n• Contact us for any privacy concerns';
 
   @override
   String get contactUs => 'Contact Us';
 
   @override
-  String get contactDetails => 'If you have any questions about this Privacy Policy, please contact us at:\n\nEmail: privacy@flutterchatbot.com\nAddress: [Your Address Here]';
+  String get contactDetails =>
+      'If you have any questions about this Privacy Policy, please contact us at:\n\nEmail: privacy@flutterchatbot.com\nAddress: [Your Address Here]';
 }

@@ -81,10 +81,25 @@ class MyApp extends StatelessWidget {
     const Color primarySeedColor = Colors.blue;
 
     final TextTheme appTextTheme = TextTheme(
-      displayLarge: const TextStyle(fontSize: 57, fontWeight: FontWeight.bold),
-      titleLarge: const TextStyle(fontSize: 22, fontWeight: FontWeight.w600),
-      bodyMedium: const TextStyle(fontSize: 14),
-      labelLarge: const TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
+      displayLarge: const TextStyle(
+        fontSize: 57,
+        fontWeight: FontWeight.bold,
+        fontFamily: 'Poppins',
+      ),
+      titleLarge: const TextStyle(
+        fontSize: 22,
+        fontWeight: FontWeight.w600,
+        fontFamily: 'Poppins',
+      ),
+      bodyMedium: const TextStyle(
+        fontSize: 14,
+        fontFamily: 'Poppins',
+      ),
+      labelLarge: const TextStyle(
+        fontSize: 14,
+        fontWeight: FontWeight.w600,
+        fontFamily: 'Poppins',
+      ),
     );
 
     final ThemeData lightTheme = ThemeData(

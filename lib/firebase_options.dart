@@ -65,11 +65,11 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions macos = FirebaseOptions(
     apiKey: 'AIzaSyDexdmONGWm53q2S_SVVAxc2K4Yue_xbgM',
-    appId: 'YOUR_APP_ID',
-    messagingSenderId: 'YOUR_MESSAGING_SENDER_ID',
-    projectId: 'YOUR_PROJECT_ID',
-    storageBucket: 'YOUR_STORAGE_BUCKET',
+    appId: '1:47108552775:macos:595bc460d4430e281b5962',
+    messagingSenderId: '47108552775',
+    projectId: 'dart-editer',
+    storageBucket: 'dart-editer.firebasestorage.app',
     iosClientId: 'YOUR_IOS_CLIENT_ID',
-    iosBundleId: 'YOUR_IOS_BUNDLE_ID',
+    iosBundleId: 'com.example.myapp',
   );
 }

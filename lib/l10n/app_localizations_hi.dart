@@ -77,7 +77,8 @@ class AppLocalizationsHi extends AppLocalizations {
   String get deleteChat => 'चैट हटाएं';
 
   @override
-  String get deleteChatConfirm => 'क्या आप वाकई इस चैट को हटाना चाहते हैं? यह क्रिया वापस नहीं की जा सकती।';
+  String get deleteChatConfirm =>
+      'क्या आप वाकई इस चैट को हटाना चाहते हैं? यह क्रिया वापस नहीं की जा सकती।';
 
   @override
   String get delete => 'हटाएं';
@@ -127,35 +128,41 @@ class AppLocalizationsHi extends AppLocalizations {
   String get informationCollected => 'जानकारी हम एकत्र करते हैं';
 
   @override
-  String get infoCollectedDetails => '• आपके द्वारा चैटबॉट को भेजे गए टेक्स्ट संदेश\n• विश्लेषण के लिए आपकी अपलोड की गई छवियां\n• वॉइस रिकॉर्डिंग (यदि वॉइस इनपुट का उपयोग किया गया)\n• ऐप उपयोग एनालिटिक्स';
+  String get infoCollectedDetails =>
+      '• आपके द्वारा चैटबॉट को भेजे गए टेक्स्ट संदेश\n• विश्लेषण के लिए आपकी अपलोड की गई छवियां\n• वॉइस रिकॉर्डिंग (यदि वॉइस इनपुट का उपयोग किया गया)\n• ऐप उपयोग एनालिटिक्स';
 
   @override
   String get howWeUseInfo => 'हम आपकी जानकारी का उपयोग कैसे करते हैं';
 
   @override
-  String get useInfoDetails => '• आपके प्रश्नों के लिए AI-संचालित प्रतिक्रियाएं प्रदान करने के लिए\n• आपकी अपलोड की गई छवियों का विश्लेषण करने के लिए\n• हमारे AI मॉडल और सेवाओं में सुधार करने के लिए\n• ग्राहक सहायता प्रदान करने के लिए';
+  String get useInfoDetails =>
+      '• आपके प्रश्नों के लिए AI-संचालित प्रतिक्रियाएं प्रदान करने के लिए\n• आपकी अपलोड की गई छवियों का विश्लेषण करने के लिए\n• हमारे AI मॉडल और सेवाओं में सुधार करने के लिए\n• ग्राहक सहायता प्रदान करने के लिए';
 
   @override
   String get dataStorageSecurity => 'डेटा संग्रहण और सुरक्षा';
 
   @override
-  String get storageDetails => '• आपकी बातचीत वास्तविक समय में संसाधित की जाती है\n• छवियां केवल विश्लेषण के लिए अस्थायी रूप से संग्रहीत की जाती हैं\n• हम उद्योग-मानक एन्क्रिप्शन का उपयोग करते हैं\n• डेटा हमारे सर्वर पर स्थायी रूप से संग्रहीत नहीं किया जाता';
+  String get storageDetails =>
+      '• आपकी बातचीत वास्तविक समय में संसाधित की जाती है\n• छवियां केवल विश्लेषण के लिए अस्थायी रूप से संग्रहीत की जाती हैं\n• हम उद्योग-मानक एन्क्रिप्शन का उपयोग करते हैं\n• डेटा हमारे सर्वर पर स्थायी रूप से संग्रहीत नहीं किया जाता';
 
   @override
   String get thirdPartyServices => 'तृतीय-पक्ष सेवाएं';
 
   @override
-  String get thirdPartyDetails => '• टेक्स्ट और छवि प्रसंस्करण के लिए Google Gemini AI\n• ऐप कार्यक्षमता के लिए Firebase\n• इन सेवाओं की अपनी गोपनीयता नीतियां हैं';
+  String get thirdPartyDetails =>
+      '• टेक्स्ट और छवि प्रसंस्करण के लिए Google Gemini AI\n• ऐप कार्यक्षमता के लिए Firebase\n• इन सेवाओं की अपनी गोपनीयता नीतियां हैं';
 
   @override
   String get yourRights => 'आपके अधिकार';
 
   @override
-  String get rightsDetails => '• आप अपनी बातचीत इतिहास को हटा सकते हैं\n• आप एनालिटिक्स से ऑप्ट आउट कर सकते हैं\n• आप डेटा हटाने का अनुरोध कर सकते हैं\n• किसी भी गोपनीयता चिंता के लिए हमसे संपर्क करें';
+  String get rightsDetails =>
+      '• आप अपनी बातचीत इतिहास को हटा सकते हैं\n• आप एनालिटिक्स से ऑप्ट आउट कर सकते हैं\n• आप डेटा हटाने का अनुरोध कर सकते हैं\n• किसी भी गोपनीयता चिंता के लिए हमसे संपर्क करें';
 
   @override
   String get contactUs => 'हमसे संपर्क करें';
 
   @override
-  String get contactDetails => 'यदि इस गोपनीयता नीति के बारे में आपके कोई प्रश्न हैं, तो कृपया हमसे संपर्क करें:\n\nईमेल: privacy@flutterchatbot.com\nपता: [आपका पता यहां]';
+  String get contactDetails =>
+      'यदि इस गोपनीयता नीति के बारे में आपके कोई प्रश्न हैं, तो कृपया हमसे संपर्क करें:\n\nईमेल: privacy@flutterchatbot.com\nपता: [आपका पता यहां]';
 }

@@ -23,9 +23,34 @@ class ChatService with ChangeNotifier {
   }
 
   void _initGemini() {
+    /// Initialize Gemini AI model with API key from environment variable.
+    /// 
+    /// SETUP REQUIRED:
+    /// 1. Get your API key from: https://console.cloud.google.com/apis/credentials
+    /// 2. Enable "Generative Language API" in Google Cloud Console
+    /// 3. Run the app with: flutter run --dart-define=GEMINI_API_KEY=your_key_here
+    /// 
+    /// For development, you can also set the environment variable:
+    /// export GEMINI_API_KEY=your_key_here
+    /// 
+    /// ⚠️ SECURITY WARNING: Never commit API keys to version control!
+    /// Always use environment variables or secure key management.
+    const String geminiApiKey = String.fromEnvironment(
+      'GEMINI_API_KEY',
+      defaultValue: 'YOUR_GEMINI_API_KEY_HERE',
+    );
+    
+    if (geminiApiKey == 'YOUR_GEMINI_API_KEY_HERE') {
+      debugPrint(
+        '⚠️ WARNING: Gemini API key not configured!\n'
+        'Please set GEMINI_API_KEY environment variable.\n'
+        'Run: flutter run --dart-define=GEMINI_API_KEY=your_key_here',
+      );
+    }
+    
     _model = genai.GenerativeModel(
       model: 'gemini-1.5-flash',
-      apiKey: 'AIzaSyCMMTc9SF0IF9vMF97fQye-TttqoBtqWLs', // Android API key
+      apiKey: geminiApiKey,
     );
   }
 
