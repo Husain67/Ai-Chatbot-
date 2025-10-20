@@ -11,42 +11,51 @@ import 'package:provider/provider.dart';
 import 'package:myapp/services/tab_service.dart';
 import 'package:myapp/screens/chat_screen.dart';
 import 'package:myapp/services/chat_service.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:myapp/l10n/app_localizations.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_core_platform_interface/firebase_core_platform_interface.dart';
-import 'package:mockito/mockito.dart' as Mockito;
+import 'package:mockito/mockito.dart';
 
 import 'package:myapp/main.dart';
 
-// A helper function to set up a mock Firebase platform.
-void setupFirebaseForTesting() {
-  TestWidgetsFlutterBinding.ensureInitialized();
-  // This mocks the Firebase platform so that Firebase.initializeApp doesn't try to talk to native code.
-  FirebaseCorePlatform.instance = _MockFirebaseCore();
+class MockFirebaseApp extends Mock implements FirebaseAppPlatform {
+  @override
+  String get name => 'testApp';
+
+  @override
+  FirebaseOptions get options => FirebaseOptions(
+        appId: '1:1234567890:ios:42b10f3f504313b216c020',
+        apiKey: 'test-api-key',
+        projectId: 'test-project-id',
+        messagingSenderId: '1234567890',
+      );
+
+  @override
+  bool get isAutomaticDataCollectionEnabled => false;
+
+  @override
+  Future<void> setAutomaticDataCollectionEnabled(bool enabled) async {}
+
+  @override
+  Future<void> setAutomaticResourceManagementEnabled(bool enabled) async {}
+
+  @override
+  Future<void> delete() async {}
 }
 
-class _MockFirebaseCore extends Mockito.Mock implements FirebaseCorePlatform {
+class MockFirebasePlatform extends FirebasePlatform with Mock {
   @override
   Future<FirebaseAppPlatform> initializeApp({
-    required String name,
+    String? name,
     FirebaseOptions? options,
   }) async {
-    return _MockFirebaseApp();
+    return MockFirebaseApp();
   }
 }
 
-class _MockFirebaseApp extends Mockito.Mock implements FirebaseAppPlatform {}
-
-// class Mock extends Fake implements Mockito.Mock {
-//   // Override noSuchMethod to allow mocking of any method.
-//   @override
-//   dynamic noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
-// }
-
 void main() {
   setUpAll(() async {
-    setupFirebaseForTesting();
+    TestWidgetsFlutterBinding.ensureInitialized();
+    FirebasePlatform.instance = MockFirebasePlatform();
   });
 
   testWidgets('App starts and displays ChatScreen', (WidgetTester tester) async {

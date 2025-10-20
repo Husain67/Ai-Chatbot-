@@ -11,5 +11,9 @@
         ".specify/scripts/bash/": true,
         ".specify/scripts/powershell/": true
     },
-    "IDX.aI.showChatInEditorTab": true
+    "IDX.aI.showChatInEditorTab": true,
+    "debug.openExplorerOnEnd": true,
+    "explorer.sortOrderReverse": true,
+    "javascript.format.insertSpaceAfterConstructor": true,
+    "editor.experimental.treeSitterTelemetry": true
 }
