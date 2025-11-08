@@ -5,9 +5,12 @@ import 'package:flutter_tts/flutter_tts.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'dart:io';
 import 'package:google_generative_ai/google_generative_ai.dart' as genai;
+import 'package:shared_preferences/shared_preferences.dart';
+import 'dart:convert';
 
 class ChatService with ChangeNotifier {
   final List<ChatMessage> _messages = [];
+  SharedPreferences? _prefs;
 
   final stt.SpeechToText _speech = stt.SpeechToText();
   final FlutterTts _flutterTts = FlutterTts();
@@ -20,6 +23,18 @@ class ChatService with ChangeNotifier {
   ChatService() {
     _initSpeech();
     _initGemini();
+    _loadHistory();
+  }
+
+  Future<void> _loadHistory() async {
+    _prefs = await SharedPreferences.getInstance();
+    final String? history = _prefs?.getString('chat_history');
+    if (history != null) {
+      final List<dynamic> decoded = jsonDecode(history);
+      _messages.addAll(
+          decoded.map((json) => ChatMessage.fromJson(json)).toList());
+      notifyListeners();
+    }
   }
 
   void _initGemini() {
@@ -37,13 +52,13 @@ class ChatService with ChangeNotifier {
     /// Always use environment variables or secure key management.
     const String geminiApiKey = String.fromEnvironment(
       'GEMINI_API_KEY',
-      defaultValue: 'YOUR_GEMINI_API_KEY_HERE',
+      defaultValue: '',
     );
-    
-    if (geminiApiKey == 'YOUR_GEMINI_API_KEY_HERE') {
+
+    if (geminiApiKey.isEmpty) {
       debugPrint(
-        '⚠️ WARNING: Gemini API key not configured!\n'
-        'Please set GEMINI_API_KEY environment variable.\n'
+        'CRITICAL: Gemini API key not configured!\n'
+        'The app will not function correctly without it.\n'
         'Run: flutter run --dart-define=GEMINI_API_KEY=your_key_here',
       );
     }
@@ -51,6 +66,11 @@ class ChatService with ChangeNotifier {
     _model = genai.GenerativeModel(
       model: 'gemini-1.5-flash',
       apiKey: geminiApiKey,
+      systemInstruction: genai.Content.text(
+        'You are a friendly and helpful AI assistant. '
+        'Your goal is to provide accurate and concise information. '
+        'Keep your responses conversational and engaging.',
+      ),
     );
   }
 
@@ -96,12 +116,26 @@ class ChatService with ChangeNotifier {
       final botMessage =
           response.text ?? 'Sorry, I couldn\'t analyze the image.';
       _addMessage(botMessage, MessageSender.bot, speak: true);
-    } catch (e) {
+    } on genai.InvalidApiKey catch (e) {
       _addMessage(
-        'Sorry, I\'m having trouble analyzing the image. Please try again.',
+        'Invalid API Key. Please check your configuration.',
         MessageSender.bot,
         speak: true,
       );
+      debugPrint('Invalid API Key: ${e.message}');
+    } on SocketException {
+      _addMessage(
+        'No internet. Please check your connection and try again.',
+        MessageSender.bot,
+        speak: true,
+      );
+    } catch (e) {
+      _addMessage(
+        'An unexpected error occurred. Please try again later.',
+        MessageSender.bot,
+        speak: true,
+      );
+      debugPrint('An unexpected error occurred: $e');
     }
   }
 
@@ -148,7 +182,14 @@ class ChatService with ChangeNotifier {
     if (speak && text != null) {
       _speak(text);
     }
+    _saveHistory();
     notifyListeners();
+  }
+
+  Future<void> _saveHistory() async {
+    final List<Map<String, dynamic>> history =
+        _messages.map((m) => m.toJson()).toList();
+    await _prefs?.setString('chat_history', jsonEncode(history));
   }
 
   Future<void> _getBotResponse(String userMessage) async {
@@ -170,12 +211,26 @@ class ChatService with ChangeNotifier {
       final botMessage =
           response.text ?? 'Sorry, I couldn\'t generate a response.';
       _addMessage(botMessage, MessageSender.bot, speak: true);
-    } catch (e) {
+    } on genai.InvalidApiKey catch (e) {
       _addMessage(
-        'Sorry, I\'m having trouble connecting to my AI service. Please check your internet connection and try again.',
+        'Invalid API Key. Please check your configuration.',
         MessageSender.bot,
         speak: true,
       );
+      debugPrint('Invalid API Key: ${e.message}');
+    } on SocketException {
+      _addMessage(
+        'No internet. Please check your connection and try again.',
+        MessageSender.bot,
+        speak: true,
+      );
+    } catch (e) {
+      _addMessage(
+        'An unexpected error occurred. Please try again later.',
+        MessageSender.bot,
+        speak: true,
+      );
+      debugPrint('An unexpected error occurred: $e');
     }
   }
 
